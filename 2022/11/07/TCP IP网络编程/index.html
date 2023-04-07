@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    <meta name="description" content="Hexo Theme Redefine">
+    <meta name="author" content="staaar">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-redefine.png">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://evan.beee.top" crossorigin>
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2022/11/07/tcp ip网络编程/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="123#include &lt;sys&#x2F;socket.h&gt;int socket(int domain, int type, int protocol);&#x2F;&#x2F;成功时返回文件描述符, 失败时返回-1    12int bind(int sockfd, struct sockaddr *myaddr, socklen_t addrlen);&#x2F;&#x2F;成功时返回0, 失败时返回-1    分配给标准输入输">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP&#x2F;IP网络编程">
+<meta property="og:url" content="http://example.com/2022/11/07/TCP%20IP%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="123#include &lt;sys&#x2F;socket.h&gt;int socket(int domain, int type, int protocol);&#x2F;&#x2F;成功时返回文件描述符, 失败时返回-1    12int bind(int sockfd, struct sockaddr *myaddr, socklen_t addrlen);&#x2F;&#x2F;成功时返回0, 失败时返回-1    分配给标准输入输">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/image-20220908153953994.png">
+<meta property="og:image" content="http://example.com/img/image-20220911210332798.png">
+<meta property="og:image" content="http://example.com/img/image-20220911214033212.png">
+<meta property="og:image" content="http://example.com/img/image-20220911214412817.png">
+<meta property="og:image" content="http://example.com/img/image-20220912113939503.png">
+<meta property="og:image" content="http://example.com/img/image-20220913095924040.png">
+<meta property="og:image" content="http://example.com/img/image-20220913203440618.png">
+<meta property="og:image" content="http://example.com/img/image-20220913204312259.png">
+<meta property="og:image" content="http://example.com/img/image-20220928082850065.png">
+<meta property="og:image" content="http://example.com/img/image-20221008232550859.png">
+<meta property="og:image" content="http://example.com/img/image-20221008232633448.png">
+<meta property="og:image" content="http://example.com/img/image-20221008233513001.png">
+<meta property="og:image" content="http://example.com/img/image-20221010225047496.png">
+<meta property="og:image" content="http://example.com/img/image-20221010225113616.png">
+<meta property="og:image" content="http://example.com/img/image-20221010225128033.png">
+<meta property="og:image" content="http://example.com/img/image-20221010231504402.png">
+<meta property="og:image" content="http://example.com/img/image-20221010231730566.png">
+<meta property="og:image" content="http://example.com/img/image-20221011200549073.png">
+<meta property="og:image" content="http://example.com/img/image-20221011230616967.png">
+<meta property="og:image" content="http://example.com/img/image-20221012000012836.png">
+<meta property="og:image" content="http://example.com/img/image-20221012000529386.png">
+<meta property="og:image" content="http://example.com/img/image-20221013002934473.png">
+<meta property="og:image" content="http://example.com/img/image-20221013003156901.png">
+<meta property="og:image" content="http://example.com/img/image-20221013003333559.png">
+<meta property="og:image" content="http://example.com/img/image-20221013003508366.png">
+<meta property="og:image" content="http://example.com/img/image-20221017221921584.png">
+<meta property="og:image" content="http://example.com/img/image-20221017221948527.png">
+<meta property="og:image" content="http://example.com/img/image-20221019131555115.png">
+<meta property="og:image" content="http://example.com/img/image-20221019131619158.png">
+<meta property="og:image" content="http://example.com/img/image-20221021224505975.png">
+<meta property="og:image" content="http://example.com/img/image-20221024132928621.png">
+<meta property="og:image" content="c:/Users/41994/AppData/Roaming/Typora/typora-user-images/image-20221024132941804.png">
+<meta property="og:image" content="http://example.com/img/image-20221024133317387.png">
+<meta property="og:image" content="http://example.com/img/image-20221028204007100.png">
+<meta property="og:image" content="http://example.com/img/image-20221028205138991.png">
+<meta property="og:image" content="http://example.com/img/image-20221028205346623.png">
+<meta property="og:image" content="http://example.com/img/image-20221028214642246.png">
+<meta property="og:image" content="http://example.com/img/image-20221028214743084.png">
+<meta property="og:image" content="http://example.com/img/image-20221028214853713.png">
+<meta property="og:image" content="http://example.com/img/image-20221029004710356.png">
+<meta property="og:image" content="http://example.com/img/image-20221103134924834.png">
+<meta property="og:image" content="http://example.com/img/image-20221104004848489.png">
+<meta property="og:image" content="http://example.com/img/image-20221104005134653.png">
+<meta property="og:image" content="http://example.com/img/image-20221104005151759.png">
+<meta property="og:image" content="http://example.com/img/image-20221104134316223.png">
+<meta property="og:image" content="http://example.com/img/image-20221104140821510.png">
+<meta property="og:image" content="http://example.com/img/image-20221105155837023.png">
+<meta property="og:image" content="http://example.com/img/image-20221105160029990.png">
+<meta property="og:image" content="http://example.com/img/image-20221105160153688.png">
+<meta property="og:image" content="http://example.com/img/image-20221105160308077.png">
+<meta property="og:image" content="http://example.com/img/image-20221105164046615.png">
+<meta property="og:image" content="http://example.com/img/image-20221105164059004.png">
+<meta property="og:image" content="http://example.com/img/image-20221105164222493.png">
+<meta property="og:image" content="http://example.com/img/image-20221105164350068.png">
+<meta property="og:image" content="http://example.com/img/image-20221105164458291.png">
+<meta property="og:image" content="http://example.com/img/image-20221105164855954.png">
+<meta property="article:published_time" content="2022-11-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-04-03T13:56:20.144Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/image-20220908153953994.png">
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/star.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/star.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/star.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            TCP/IP网络编程 -
+        
+        Star
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"example.com","root":"/","language":"en"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center"},"word_count":{"enable":false,"count":false,"min2read":false},"author_label":{"enable":false,"auto":false,"list":[""]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":false,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"busuanzi_counter":{"enable":false,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true},"home_banner":{"enable":true,"image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"一条咸鱼罢了","subtitle":{"text":[],"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"audios":[{"name":null,"artist":null,"url":null,"cover":null},{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.1.0","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","announcement":null,"links":{"Categories":{"path":"/categories","icon":"fa-regular fa-folder"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Star
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">TCP/IP网络编程</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/cat.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">staaar</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2022-11-07</span>
+        <span class="mobile">2022-11-07 00</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-04-03 21:56:20</span>
+            <span class="mobile">2023-04-03 21:56</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/C/">C++</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+    
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">socket</span><span class="params">(<span class="type">int</span> domain, <span class="type">int</span> type, <span class="type">int</span> protocol)</span>;</span><br><span class="line"><span class="comment">//成功时返回文件描述符, 失败时返回-1</span></span><br></pre></td></tr></table></figure></div>
+
+
+
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">bind</span><span class="params">(<span class="type">int</span> sockfd, <span class="keyword">struct</span> sockaddr *myaddr, <span class="type">socklen_t</span> addrlen)</span>;</span><br><span class="line"><span class="comment">//成功时返回0, 失败时返回-1</span></span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>分配给标准输入输出及标准错误的文件描述符</p>
+<table>
+<thead>
+<tr>
+<th align="center">文件描述符</th>
+<th align="center">对象</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0</td>
+<td align="center">标注输入: Standard Input</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">标准输出: Standard Output</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">标准错误: Standard Error</td>
+</tr>
+</tbody></table>
+<p>文件打开模式</p>
+<table>
+<thead>
+<tr>
+<th align="left">打开模式</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">O_CREAT</td>
+<td>必要时创建文件</td>
+</tr>
+<tr>
+<td align="left">O_TRUNC</td>
+<td>删除全部现有数据</td>
+</tr>
+<tr>
+<td align="left">O_APPEND</td>
+<td>维持现有数据, 保存到其后面</td>
+</tr>
+<tr>
+<td align="left">O_RDONLY</td>
+<td>只读打开</td>
+</tr>
+<tr>
+<td align="left">O_WRONLY</td>
+<td>只写打开</td>
+</tr>
+<tr>
+<td align="left">O_RDWR</td>
+<td>读写打开</td>
+</tr>
+</tbody></table>
+<h5 id="文件描述符"><a href="#文件描述符" class="headerlink" title="文件描述符"></a>文件描述符</h5><p>方便称呼操作系统创建的文件或套接字而赋予的数</p>
+<h2 id="套接字"><a href="#套接字" class="headerlink" title="套接字"></a>套接字</h2><div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">socket</span><span class="params">(<span class="type">int</span> domain, <span class="type">int</span> type, <span class="type">int</span> protocol)</span>;</span><br><span class="line"><span class="comment">//成功时返回文件描述符, 失败时返回-1</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="协议族"><a href="#协议族" class="headerlink" title="协议族"></a>协议族</h3><p>头文件sys&#x2F;socket.h中声明的协议族</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>协议族</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PF_INET</td>
+<td>IPv4互联网协议族</td>
+</tr>
+<tr>
+<td>PF_INET6</td>
+<td>IPv6互联网协议族</td>
+</tr>
+<tr>
+<td>PF_LOCAL</td>
+<td>本地通信的UNIX协议族</td>
+</tr>
+<tr>
+<td>PF_PACKET</td>
+<td>底层套接字的协议族</td>
+</tr>
+<tr>
+<td>PF_IPX</td>
+<td>IPX Novell协议族</td>
+</tr>
+</tbody></table>
+<h3 id="套接字类型"><a href="#套接字类型" class="headerlink" title="套接字类型"></a>套接字类型</h3><p>面向连接的套接字 SOCK_STREAM</p>
+<p>面向消息的套接字 SOCK_DGRAM</p>
+<p>TCP套接字</p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> tcp_socket = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);</span><br></pre></td></tr></table></figure></div>
+
+<p>UDP套接字</p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> udp_socket = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP);</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h2 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h2><p>IPv4地址族</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20220908153953994.png"
+                      alt="image-20220908153953994"
+                ></p>
+<ul>
+<li>A类地址的首字节范围: 0~127</li>
+<li>B类地址的首字节范围: 128~191</li>
+<li>C类地址的首字节范围: 12~223</li>
+</ul>
+<p>或者</p>
+<ul>
+<li>A类地址的首位以0开始</li>
+<li>B类地址的前2位以10开始</li>
+<li>C类地址的前3位以110开始</li>
+</ul>
+<p>端口号由16位构成，可分配的端口号范围是0-65535，其中0-1023是知名端口，一般分配给特定应用程序</p>
+<h5 id="表示IPv4地址的结构体"><a href="#表示IPv4地址的结构体" class="headerlink" title="表示IPv4地址的结构体"></a>表示IPv4地址的结构体</h5><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">sockaddr_in</span>&#123;</span><br><span class="line">	<span class="type">sa_family_t</span>     sin_family; <span class="comment">//地址族(Address Family)</span></span><br><span class="line">    <span class="type">uint16_t</span>        sin_port;   <span class="comment">//16位TCP/UDP端口号</span></span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">in_addr</span>  sin_addr;   <span class="comment">//32位IP地址</span></span><br><span class="line">    <span class="type">char</span>            sin_zero[<span class="number">8</span>];<span class="comment">//不使用</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">in_addr</span>&#123;</span><br><span class="line">    In_addr_t       s_addr;     <span class="comment">//32位IPv4地址</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<h6 id="成员sin-family"><a href="#成员sin-family" class="headerlink" title="成员sin_family"></a>成员sin_family</h6><p>AF_INET     IPv4网络协议中使用的地址族</p>
+<p>AF_INET6   IPv6网络协议中使用的地址族</p>
+<h6 id="成员sin-zero"><a href="#成员sin-zero" class="headerlink" title="成员sin_zero"></a>成员sin_zero</h6><p>无特殊含义，只是为使结构体sockaddr_in的大小与sockaddr结构体保持一致而插入的成员</p>
+<h3 id="网络字节序"><a href="#网络字节序" class="headerlink" title="网络字节序"></a>网络字节序</h3><h4 id="保存数据方式"><a href="#保存数据方式" class="headerlink" title="保存数据方式"></a>保存数据方式</h4><p>CPU向内保存数据的方式有2种</p>
+<ul>
+<li>大端序：高位字节存放到低位地址</li>
+<li>小端序：高位字节存放到高位地址 (主流)</li>
+</ul>
+<h4 id="字节序转换"><a href="#字节序转换" class="headerlink" title="字节序转换"></a>字节序转换</h4><p>由于大小端问题，在通过网络传输数据时约定统一方式，这种约定称为网络字节序——统一为大端序，即先把数据数组转化成大端序格式再进行网络传输。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">unsigned</span> <span class="type">short</span> <span class="title">htons</span><span class="params">(<span class="type">unsigned</span> <span class="type">short</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="type">unsigned</span> <span class="type">short</span> <span class="title">ntohs</span><span class="params">(<span class="type">unsigned</span> <span class="type">short</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="type">unsigned</span> <span class="type">long</span> <span class="title">htons</span><span class="params">(<span class="type">unsigned</span> <span class="type">long</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="type">unsigned</span> <span class="type">long</span> <span class="title">ntohs</span><span class="params">(<span class="type">unsigned</span> <span class="type">long</span>)</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>htons中的h代表主机（host）字节库</li>
+<li>htons中的n代表网络（network）字节库</li>
+</ul>
+<p>htons是h、to、n、s的组合, 也可以解释为”把short型数据从主机字节序转化为网络字节序”</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">sockaddr_in</span> addr;</span><br><span class="line"><span class="type">char</span> * serv_port = <span class="string">&quot;9190&quot;</span>;</span><br><span class="line"><span class="built_in">memset</span>(&amp;addr, <span class="number">0</span>, <span class="built_in">sizeof</span>(addr));</span><br><span class="line">addr.sin_family = AF_INET;</span><br><span class="line">addr.sin_addr.s_addr = <span class="built_in">htol</span>(INADDR_ANT);</span><br><span class="line">addr.sin_port = <span class="built_in">htons</span>(<span class="built_in">atoi</span>(serv_port));</span><br></pre></td></tr></table></figure></div>
+
+<p>利用常数<code>INADDR_ANY</code>分配服务器端的IP地址, 可自动获取运行服务器端的计算机IP地址, 不必亲自输入. 若同一计算机中已分配多个IP地址, 则只要端口号一致, 就可以从不同IP地址接收数据.</p>
+<p>向套接字分配网络地址</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> serv_sock;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">sockaddr_in</span> serv_addr;</span><br><span class="line"><span class="type">char</span> * serv_port = <span class="string">&quot;9190&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建服务器端套接字(监听套接字)</span></span><br><span class="line">serv_sock = <span class="built_in">socket</span>(PF_INET, SOCK_STREAM, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//地址信息初始化</span></span><br><span class="line"><span class="built_in">memset</span>(&amp;serv_addr, <span class="number">0</span>, <span class="built_in">sizeof</span>(serv_addr));</span><br><span class="line">serv_addr.sin_family = AF_INET;</span><br><span class="line">serv_addr.sin_addr.s_addr = <span class="built_in">htol</span>(INADDR_ANY);</span><br><span class="line">serv_addr.sin_port = <span class="built_in">htons</span>(<span class="built_in">atoi</span>(serv_port));</span><br><span class="line"></span><br><span class="line"><span class="comment">//分配地址信息</span></span><br><span class="line"><span class="built_in">bind</span>(serv_sock, (<span class="keyword">struct</span> sockaddr *)&amp;serv_addr, <span class="built_in">sizeof</span>(serv_addr));</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h2 id="基于TCP"><a href="#基于TCP" class="headerlink" title="基于TCP"></a>基于TCP</h2><p>TCP服务器端函数调用顺序</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20220911210332798.png"
+                      alt="image-20220911210332798" style="zoom:50%;" 
+                >
+
+<h5 id="进入等待连接请求状态"><a href="#进入等待连接请求状态" class="headerlink" title="进入等待连接请求状态"></a>进入等待连接请求状态</h5><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">listen</span><span class="params">(<span class="type">int</span> sock, <span class="type">int</span> backlog)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//成功时返回0, 失败时返回-1</span></span><br><span class="line"><span class="comment">//sock 希望进入等待连接请求状态的套接字文件描述符</span></span><br><span class="line"><span class="comment">//backlog 连接请求等待队列的长度, 若为5, 则队列长度为5, 表示最多使5个连接请求进入队列</span></span><br></pre></td></tr></table></figure></div>
+
+<h5 id="受理客户端连接请求"><a href="#受理客户端连接请求" class="headerlink" title="受理客户端连接请求"></a>受理客户端连接请求</h5><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">accept</span><span class="params">(<span class="type">int</span> sock, <span class="keyword">struct</span> sockaddr * addr, <span class="type">socklen_t</span> * addrlen)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//成功时返回创建的套接字文件描述符, 失败时返回-1</span></span><br><span class="line"><span class="comment">//sock 服务器套接字的文件描述符</span></span><br><span class="line"><span class="comment">//addr 保存发起连接请求的客户端地址信息的变量地址值, 调用函数后向传递来的地址变量参数填充客户端地址信息</span></span><br><span class="line"><span class="comment">//addrlen 第二个参数addr结构体的长度, 但是存有长度的变量地址. 函数调用完成后, 该变量即被填入客户端地址长度</span></span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>TCP客户端的默认函数调用顺序</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20220911214033212.png"
+                      alt="image-20220911214033212" style="zoom:50%;" 
+                >
+
+
+
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">connect</span><span class="params">(<span class="type">int</span> sock, <span class="keyword">struct</span> sockaddr * servaddr, <span class="type">socklen_t</span> addrlen)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//成功时返回0, 失败时返回-1</span></span><br><span class="line"><span class="comment">//sock 客户端套接字文件描述符</span></span><br><span class="line"><span class="comment">//servaddr 保存目标服务器端地址信息的变量地址值</span></span><br><span class="line"><span class="comment">//addrlen 以字节为单位传递已传递给第二个结构体参数servaddr的地址变量长度</span></span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>函数调用关系</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20220911214412817.png"
+                      alt="image-20220911214412817" style="zoom:50%;" 
+                >
+
+
+
+<p>基于UDP的数据I&#x2F;O函数</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">ssize_t</span> <span class="title">sendto</span><span class="params">(<span class="type">int</span> sock, <span class="type">void</span> *buff, <span class="type">size_t</span> nbytes, <span class="type">int</span> flags, </span></span></span><br><span class="line"><span class="params"><span class="function">              <span class="keyword">struct</span> sockaddr *to, <span class="type">socklen_t</span> addrlen)</span></span>;</span><br><span class="line"><span class="comment">//成功时返回传输的字节数, 失败时返回-1</span></span><br><span class="line"><span class="comment">//sock     用于传输数据的UDP套接字文件描述符</span></span><br><span class="line"><span class="comment">//buff     保存待传输数据的缓冲地址值</span></span><br><span class="line"><span class="comment">//nbytes   待传输的数据长度, 以字节为单位</span></span><br><span class="line"><span class="comment">//flags    可选项参数, 若没有则传递0</span></span><br><span class="line"><span class="comment">//to       存有目标地址信息的sockaddr结构体变量的地址值</span></span><br><span class="line"><span class="comment">//addrlen  传递给参数to的地址值结构体变量长度</span></span><br></pre></td></tr></table></figure></div>
+
+
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20220912113939503.png"
+                      alt="image-20220912113939503"
+                ></p>
+<p>UDP</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//uecho_server.c</span></span><br><span class="line"><span class="keyword">while</span> (<span class="number">1</span>)&#123;</span><br><span class="line">    <span class="type">socklen_t</span> clnt_adr_sz = <span class="built_in">sizeof</span>(clnt_adr);</span><br><span class="line">    str_len = <span class="built_in">recvfrom</span>(serv_sock, message, BUF_SIZE, <span class="number">0</span>,</span><br><span class="line">                      (<span class="keyword">struct</span> sockaddr*)&amp;clnt_adr, &amp;clnt_adr_sz);</span><br><span class="line">    <span class="built_in">sendto</span>(serv_sock, message, str_len, <span class="number">0</span>,</span><br><span class="line">          (<span class="keyword">struct</span> sockaddr*)&amp;clnt_adr, clnt_adr_sz);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//uecho_client.c</span></span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">    <span class="built_in">fputs</span>(<span class="string">&quot;Insert message(q to quit):&quot;</span>, stdout);</span><br><span class="line">    <span class="built_in">fgets</span>(message, <span class="built_in">sizeof</span>(message), stdin);</span><br><span class="line">    <span class="keyword">if</span>(!<span class="built_in">strcmp</span>(message, <span class="string">&quot;q\n&quot;</span>) || !<span class="built_in">strcmp</span>(message, <span class="string">&quot;Q\n&quot;</span>))</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">sendto</span>(sock, message, <span class="built_in">strlen</span>(message), <span class="number">0</span>,</span><br><span class="line">          (<span class="keyword">struct</span> sockaddr*)&amp;serv_adr, <span class="built_in">sizeof</span>(serv_adr));</span><br><span class="line">    adr_sz = <span class="built_in">sizeof</span>(from_adr);</span><br><span class="line">    str_len = <span class="built_in">recvfrom</span>(sock, message, BUF_SIZE, <span class="number">0</span>,</span><br><span class="line">                      (<span class="keyword">struct</span> sockaddr*)&amp;from_adr, &amp;adr_sz);</span><br><span class="line">    message[str_len] = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Message from server: %s&quot;</span>, message);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>sendto函数自动分配IP和端口号</p>
+<p>sock函数创建的是UDP套接字, 用connect向UDP套接字注册目标IP和端口信息, 因此每次调用sendto函数时只需传输数据, 因为已经指定了收发对象, 所以不仅可以使用sendto、recvfrom函数, 还可以使用write、read函数进行通信.</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//uecho_con_client.c 创建已连接UDP套接字</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">connect</span>(sock, (<span class="keyword">struct</span> sockaddr*)&amp;serv_adr, <span class="built_in">sizeof</span>(serv_adr));</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">    <span class="built_in">fputs</span>(<span class="string">&quot;Insert message(q to quit):&quot;</span>, stdout);</span><br><span class="line">    <span class="built_in">fgets</span>(message, <span class="built_in">sizeof</span>(message), stdin);</span><br><span class="line">    <span class="keyword">if</span>(!<span class="built_in">strcmp</span>(message, <span class="string">&quot;q\n&quot;</span>) || !<span class="built_in">strcmp</span>(message, <span class="string">&quot;Q\n&quot;</span>))</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    sendto(sock, message, strlen(message), 0,</span></span><br><span class="line"><span class="comment">          (struct sockaddr*)&amp;serv_adr, sizeof(serv_adr));</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="built_in">write</span>(sock, message, <span class="built_in">strlen</span>(message));</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    adr_sz = sizeof(from_adr);</span></span><br><span class="line"><span class="comment">    str_len = recvfrom(sock, message, BUF_SIZE, 0,</span></span><br><span class="line"><span class="comment">                      (struct sockaddr*)&amp;from_adr, &amp;adr_sz);</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    str_len = <span class="built_in">read</span>(sock, message, <span class="built_in">sizeof</span>(message)<span class="number">-1</span>);</span><br><span class="line">    </span><br><span class="line">    message[str_len] = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Message from server: %s&quot;</span>, message);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+
+
+<h3 id="基于TCP的半关闭"><a href="#基于TCP的半关闭" class="headerlink" title="基于TCP的半关闭"></a>基于TCP的半关闭</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20220913095924040.png"
+                      alt="image-20220913095924040"
+                ></p>
+<p>SHUT_RD    断开输入流</p>
+<p>SHUT_WR   断开输出流</p>
+<p>SHUT_RDWR   同时断开I&#x2F;O流</p>
+<h2 id="域名和IP"><a href="#域名和IP" class="headerlink" title="域名和IP"></a>域名和IP</h2><p>利用域名获取IP地址</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20220913203440618.png"
+                      alt="image-20220913203440618"
+                ></p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">hostent</span>&#123;</span><br><span class="line">    <span class="type">char</span> * h_name;         <span class="comment">//official name</span></span><br><span class="line">    <span class="type">char</span> ** h_aliases;     <span class="comment">//alias list</span></span><br><span class="line">    <span class="type">int</span> h_addrtype;        <span class="comment">//host address type</span></span><br><span class="line">    <span class="type">int</span> h_length;          <span class="comment">//address length</span></span><br><span class="line">    <span class="type">char</span> ** h_addr_list;   <span class="comment">//address list</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>hostent结构体变量</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20220913204312259.png"
+                      alt="image-20220913204312259"
+                ></p>
+<h4 id="断开的shutdown函数"><a href="#断开的shutdown函数" class="headerlink" title="断开的shutdown函数"></a>断开的shutdown函数</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20220928082850065.png"
+                      alt="image-20220928082850065"
+                ></p>
+<p>SHUT_RD：断开输入流</p>
+<p>SHUT_WR：断开输出流</p>
+<p>SHUT_RDWR：同时断开I&#x2F;O流</p>
+<p>ping + 域名</p>
+<p>自己计算机中注册的默认DNS服务器地址：nslookup</p>
+<h4 id="利用域名获取IP地址"><a href="#利用域名获取IP地址" class="headerlink" title="利用域名获取IP地址"></a>利用域名获取IP地址</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221008232550859.png"
+                      alt="image-20221008232550859"
+                ></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221008232633448.png"
+                      alt="image-20221008232633448" style="zoom: 50%;" 
+                >
+
+
+
+<h4 id="利用IP地址获取域名"><a href="#利用IP地址获取域名" class="headerlink" title="利用IP地址获取域名"></a>利用IP地址获取域名</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221008233513001.png"
+                      alt="image-20221008233513001"
+                ></p>
+<h3 id="套接字-1"><a href="#套接字-1" class="headerlink" title="套接字"></a>套接字</h3><h4 id="getsockopt-amp-setsockopt"><a href="#getsockopt-amp-setsockopt" class="headerlink" title="getsockopt &amp; setsockopt"></a>getsockopt &amp; setsockopt</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221010225047496.png"
+                      alt="image-20221010225047496"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221010225113616.png"
+                      alt="image-20221010225113616"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221010225128033.png"
+                      alt="image-20221010225128033"
+                ></p>
+<p>套接字类型只能在创建时决定，以后不能再更改。</p>
+<h4 id="SO-REUSEADDR"><a href="#SO-REUSEADDR" class="headerlink" title="SO_REUSEADDR"></a>SO_REUSEADDR</h4><p>与服务器端不同，客户端每次运行程序时都会动态分配端口号，因此无需过多关注Time-wait状态。</p>
+<p>SO_REUSEADDR的默认值为0（假），这就意味着无法分配Time-wait状态下的套接字端口号。因此需要将这个值改成1（真）。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">optlen = <span class="built_in">sizeof</span>(option);</span><br><span class="line">option = TRUE;</span><br><span class="line"><span class="built_in">setsockopt</span>(serv_sock, SOL_SOCKET, SO_REUSEADDR, (<span class="type">void</span>*) &amp;option, optlen);</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h4 id="TCP-NODELAY"><a href="#TCP-NODELAY" class="headerlink" title="TCP_NODELAY"></a>TCP_NODELAY</h4><p>TCP套接字默认使用Nagle算法交换数据，因此最大限度地进行缓冲，直到收到ACK。</p>
+<p>最典型的是“传输大文件数据”。将文件数据传入输出缓冲不会花太多时间，因此，即便不使用Nagel算法，也会在装满输出缓冲时传输数据包。这不仅不会增加数据包的数量，反而会在无需等待ACK的前提下连续传输，因此可以大大提高传输速度。</p>
+<p>“大文件数据”应禁用Nagle算法。换言之，如果有必要，就应禁用Nagle算法。</p>
+<h3 id="多进程服务器端"><a href="#多进程服务器端" class="headerlink" title="多进程服务器端"></a>多进程服务器端</h3><ul>
+<li>多进程服务器：通过创建多个进程提供服务。</li>
+<li>多路复用服务器：通过捆绑并统一管理I&#x2F;O对象提供服务。</li>
+<li>多线程服务器：通过生成与客户端等量的线程提供服务。</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221010231504402.png"
+                      alt="image-20221010231504402"
+                ></p>
+<ul>
+<li>父进程：fork函数返回子进程ID。</li>
+<li>子进程：fork函数返回0。</li>
+</ul>
+<h4 id="后台处理"><a href="#后台处理" class="headerlink" title="后台处理"></a>后台处理</h4><p>后台处理是指将控制台窗口中的指令放到后台运行的方式。如果以如下方式运行上述示例，则程序将在后台运行（&amp;将触发后台处理）。</p>
+<p><code>root@my_linux:/tcpip#  ./zombie &amp;</code></p>
+<p>如果采用这种方式运行程序，即可在同一控制台输入下列命令，无需另外打开新控制台。</p>
+<p><code>root@my_linux:/tcpip#  ps au</code></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221010231730566.png"
+                      alt="image-20221010231730566"
+                ></p>
+<p>调用wait函数时，如果没有已终止的子进程，那么程序将阻塞（Blocking）直到有子进程终止，因此需谨慎调用该函数。</p>
+<p>调用waitpid函数时，程序不会阻塞。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221011200549073.png"
+                      alt="image-20221011200549073"
+                ></p>
+<h4 id="信号处理"><a href="#信号处理" class="headerlink" title="信号处理"></a>信号处理</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221011230616967.png"
+                      alt="image-20221011230616967"
+                ></p>
+<ul>
+<li>函数名：signal</li>
+<li>函数：int signo, void (* func)(int)    &#x2F;&#x2F;参数应为int，返回值类型应为void</li>
+<li>返回类型：参数为int型，返回void型函数指针</li>
+</ul>
+<p>第一个参数为特殊情况信息，第二个参数为特殊情况下将要调用的函数的地址值（指针）。发生第一个参数代表的情况时，调用第二个参数所指的函数。下面给出可以在signal函数中注册的部分特殊情况和对应的常数。</p>
+<ul>
+<li>SIGALRM：已到通过调用的alarm函数注册的时间</li>
+<li>SIGINT：输入CTRL+C</li>
+<li>SIGCHID：子进程终止</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221012000012836.png"
+                      alt="image-20221012000012836"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221012000529386.png"
+                      alt="image-20221012000529386"
+                ></p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">sigaction</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">void</span> (*sa_handler)(<span class="type">int</span>);</span><br><span class="line">    <span class="type">sigset_t</span> sa_mask;</span><br><span class="line">    <span class="type">int</span> sa_flags;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h4 id="基于多任务的并发服务器"><a href="#基于多任务的并发服务器" class="headerlink" title="基于多任务的并发服务器"></a>基于多任务的并发服务器</h4><p>第一阶段：回声服务器端（父进程）通过调用accept函数受理连接请求。</p>
+<p>第二阶段：此时获取的套接字文件描述符创建并传递给子进程。</p>
+<p>第三阶段：子进程利用传递来的文件描述符提供服务。</p>
+<p>P184</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;signal.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/wait.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BUF_SIZE 30</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">error_handing</span><span class="params">(<span class="type">char</span> *message)</span></span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">read_childproc</span><span class="params">(<span class="type">int</span> sig)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> serv_sock, clnt_sock;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h4 id="分割I-x2F-O程序"><a href="#分割I-x2F-O程序" class="headerlink" title="分割I&#x2F;O程序"></a>分割I&#x2F;O程序</h4><p>传输数据后需要等待服务器端返回的数据，因为程序代码中重复调用了read和write函数。分割后，不同进程分别负责输入和输出，这样，无论客户端是否从服务器端接收完数据都可以进行传输。</p>
+<p>分割I&#x2F;O后的客户端发送数据时不必考虑接收数据的情况，因此可以连续发送数据，由此提高同一时间内传输的数据量。</p>
+<h3 id="进程间通信"><a href="#进程间通信" class="headerlink" title="进程间通信"></a>进程间通信</h3><p>为了完成进程间通信，需要创建管道。管道并非属于进程的资源，而是和套接字一样，属于操作系统(也就不是fork函数的复制对象)。所以，两个进程通过操作系统提供的内存空间进行通信。</p>
+<p>1个管道无法完成双向通信任务，因此需要创建2个管道，各自负责不同的数据流动即可。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221013002934473.png"
+                      alt="image-20221013002934473"
+                ></p>
+<h3 id="I-x2F-O复用"><a href="#I-x2F-O复用" class="headerlink" title="I&#x2F;O复用"></a>I&#x2F;O复用</h3><p>为了构建并发服务器，只要有客户端连接请求就会创建新进程，但创建进程时需要付出极大代价，需要大量的运算和内存空间，由于每个进程都具有独立的内存空间，所以互相间的数据交换也要求采用相对复杂的方法（IPC属于相对复杂的通信方法）。</p>
+<h4 id="select函数调用过程"><a href="#select函数调用过程" class="headerlink" title="select函数调用过程"></a>select函数调用过程</h4><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221013003156901.png"
+                      alt="image-20221013003156901" style="zoom: 67%;" 
+                >
+
+<p>如果该位设置为1，则表示该文件描述符是监视对象。</p>
+<p>下图中1、3文件描述符是监视对象。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221013003333559.png"
+                      alt="image-20221013003333559" style="zoom: 50%;" 
+                >
+
+<p>FD ZERO(fd set * fdset)：将fd_set变量的所有位初始化为0。</p>
+<p>FD SET(int fd, fd_set * fdset)：在参数fdset指向的变量中注册文件描述符fd的信息。</p>
+<p>FD_CLR(int fd, fd_set * fdset)：从参数fdset指向的变量中清除文件描述符fd的信息。</p>
+<p>FD_ISSET(int fd, fd_set * fdset)：若参数fdset指向的变量中包含文件描述符fd的信息，则返回“真”。</p>
+<h5 id="fd-set相关函数的功能"><a href="#fd-set相关函数的功能" class="headerlink" title="fd_set相关函数的功能"></a>fd_set相关函数的功能</h5><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221013003508366.png"
+                      alt="image-20221013003508366" style="zoom:67%;" 
+                >
+
+
+
+
+
+<h4 id="select函数"><a href="#select函数" class="headerlink" title="select函数"></a>select函数</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221017221921584.png"
+                      alt="image-20221017221921584"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221017221948527.png"
+                      alt="image-20221017221948527"
+                ></p>
+<p>select函数要求通过第一个参数传递监视对象文件描述符的数量。因此，需要得到注册在fd_set变量中的文件描述符数。但每次新建文件描述符时，其值都会增1，故只需将最大的文件描述符值加1再传递到select函数即可。加1是因为文件描述符的值从0开始。</p>
+<p>timeval结构体定义：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">timeval</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">long</span> tv_sec;   <span class="comment">//seconds</span></span><br><span class="line">    <span class="type">long</span> tv_usec;  <span class="comment">//microseconds</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>本来select函数只有在监视的文件描述符发生变化时才返回。如果未发生变化，就会进入阻塞状态。指定超时时间就是为了防止这种情况的发生。通过声明上述结构体变量，将秒数填人tv_sec成员,将毫秒数填人tv_usec成员,然后将结构体的地址值传递到select函数的最后一个参数。此时，即使文件描述符中未发生变化，只要过了指定时间，也可以从函数中返回。不过这种情况下,select函数返回0。因此，可以通过返回值了解返回原因。如果不想设置超时，则传递NULL参数。</p>
+<h3 id="多种IO函数"><a href="#多种IO函数" class="headerlink" title="多种IO函数"></a>多种IO函数</h3><h4 id="send-amp-recv"><a href="#send-amp-recv" class="headerlink" title="send &amp; recv"></a>send &amp; recv</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221019131555115.png"
+                      alt="image-20221019131555115"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221019131619158.png"
+                      alt="image-20221019131619158"
+                ></p>
+<p>send &amp; recv 函数的可选项及含义</p>
+<table>
+<thead>
+<tr>
+<th>可选性</th>
+<th>含义</th>
+<th>send</th>
+<th>recv</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MSG_OOB</td>
+<td>用于传输带外数据（Out-of-band data）</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>MSG_PEEK</td>
+<td>验证输入缓冲中是否存在接受的数据</td>
+<td></td>
+<td>√</td>
+</tr>
+<tr>
+<td>MSG_DONTROUTE</td>
+<td>数据传输过程中不参照路由（Routing）表，在本地（Local）网络中寻找目的地</td>
+<td>√</td>
+<td></td>
+</tr>
+<tr>
+<td>MSG_DONTWAIT</td>
+<td>调用I&#x2F;O函数时不阻塞，用于使用非阻塞（Non-blocking）I&#x2F;O</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>MSG_WAITALL</td>
+<td>防止函数返回，直到接收全部请求的字节数</td>
+<td></td>
+<td>√</td>
+</tr>
+</tbody></table>
+<p>处理P213</p>
+<p>MSG_OOB的真正意义在于督促数据接收对象尽快处理数据。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221021224505975.png"
+                      alt="image-20221021224505975"
+                ></p>
+<ul>
+<li>URG&#x3D;1：载有紧急消息的数据包</li>
+<li>URG指针：紧急指针位于偏移量为3的位置</li>
+</ul>
+<p>同时设置MSG_PEEK选项和MSG_DONTWAIT选项，以验证输入缓冲中是否存在接收的数据。设置MSG_PEEK选项并调用recv函数时，即使读取了输人缓冲的数据也不会删除。因此，该选项通常与MSG_DONTWAIT合作，用于调用以非阻塞方式验证待读数据存在与否的函数。</p>
+<h4 id="readv-amp-writev"><a href="#readv-amp-writev" class="headerlink" title="readv &amp; writev"></a>readv &amp; writev</h4><p>readv &amp; writev函数的功能可概括如下:</p>
+<ul>
+<li>“对数据进行整合传输及发送的函数。”</li>
+</ul>
+<p>也就是说，通过writev函数可以将分散保存在多个缓冲中的数据一并发送，通过readv函数可以由多个缓冲分别接收。因此，适当使用这2个函数可以减少IO函数的调用次数。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221024132928621.png"
+                      alt="image-20221024132928621"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="C:\Users\41994\AppData\Roaming\Typora\typora-user-images\image-20221024132941804.png"
+                      alt="image-20221024132941804"
+                ></p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">iovec</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">void</span> * iov_base;  <span class="comment">// 缓冲地址</span></span><br><span class="line">    <span class="type">size_t</span> iov_len;   <span class="comment">// 缓冲大小</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p><code>writev( 1 , ptr , 2 );</code></p>
+<p>第一个参数1是文件描述符，因此向控制台输出数据，ptr是存有待发送数据信息的iovec数组指针。第三个参数为2，因此从ptr指向的地址开始，共浏览2个iovec结构体变量，发送这些指针指向的缓冲数据。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221024133317387.png"
+                      alt="image-20221024133317387"
+                ></p>
+<p>writev函数在不采用Nagle算法时更有价值。</p>
+<h3 id="多播与广播"><a href="#多播与广播" class="headerlink" title="多播与广播"></a>多播与广播</h3><h4 id="多播"><a href="#多播" class="headerlink" title="多播"></a>多播</h4><p>多播的数据传输特点可整理如下。</p>
+<ul>
+<li>多播服务器端针对特定多播组，只发送1次数据。</li>
+<li>即使只发送1次数据，但该组内的所有客户端都会接收数据。</li>
+<li>多播组数可在IP地址范围内任意增加。</li>
+<li>加人特定组即可接收发往该多播组的数据。</li>
+</ul>
+<p>为了传递多播数据包，必需设置TTL。TTL是Time to Live的简写，是决定“数据包传递距离”的主要因素。TTL用整数表示，并且每经过1个路由器就减1。TTL变为O时，该数据包无法再被传递，只能销毁。因此，TTL的值设置过大将影响网络流量。当然，设置过小也会无法传递到目标，需要引起注意。</p>
+<p>TTL设置</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> send_sock;</span><br><span class="line"><span class="type">int</span> time_live = <span class="number">64</span>;</span><br><span class="line">....</span><br><span class="line">send_sock = <span class="built_in">socket</span>(PF_INET, SOCK_DGRAM, <span class="number">0</span>);</span><br><span class="line"><span class="built_in">setsockopt</span>(send_sock, IPPROTO_IP, IP_MULTICAST_TTL, (<span class="type">void</span>*) &amp;time_live, <span class="built_in">sizeof</span>(time_live));</span><br><span class="line">....</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>加入多播组</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> recv_sock;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">ip_mreq</span> join_adr;</span><br><span class="line">....</span><br><span class="line">recv_sock = <span class="built_in">socket</span>(PF_INET, SOCK_DGRAM, <span class="number">0</span>);</span><br><span class="line">....</span><br><span class="line">join_adr.imr_multiaddr.s_addr = <span class="string">&quot;多播组地址信息&quot;</span>;</span><br><span class="line">join_adr.imr_interface.s_addr = <span class="string">&quot;加入多播组的主机地址信息&quot;</span>;</span><br><span class="line"><span class="built_in">setsockopt</span>(send_sock, IPPROTO_IP, IP_ADD_MEMBERSHIP, (<span class="type">void</span>*) &amp; join_adr, <span class="built_in">sizeof</span>(join_adr));</span><br><span class="line">....</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>ip_mreq结构体</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">ip_mreq</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">in_addr</span> imr_multiaddr;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">in_addr</span> imr_interface;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>第一个成员imr_multiaddr中写人加入的组IP地址。</p>
+<p>第二个成员imr_interface是加入该组的套接字所属主机的IP地址，也可使用INADDR_ANY。</p>
+<ul>
+<li>Sender：向AAA组广播（Broadcasting）文件中保存的新闻信息。</li>
+<li>Receiver：接收传递到AAA组的新闻信息。</li>
+</ul>
+<h4 id="广播"><a href="#广播" class="headerlink" title="广播"></a>广播</h4><ul>
+<li>直接广播（Directed Broadcast )</li>
+<li>本地广播（Local Broadcast )</li>
+</ul>
+<p>默认生成的套接字会阻止广播，需通过如下代码更改默认设置：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> send_sock;</span><br><span class="line"><span class="type">int</span> bcast = <span class="number">1</span>;  <span class="comment">//对变量进行初始化以将SO_BROADCAST选项信息改为1</span></span><br><span class="line">....</span><br><span class="line">send_sock = <span class="built_in">socket</span>(PF_INET, SOCK_DGRAM, <span class="number">0</span>);</span><br><span class="line">....</span><br><span class="line"><span class="built_in">setsockopt</span>(send_sock, SOL_SOCKET, SO_BROADCAST, (<span class="type">void</span>*) &amp; bcast, <span class="built_in">sizeof</span>(bcast));</span><br><span class="line">....</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h3 id="套接字和标准I-x2F-O"><a href="#套接字和标准I-x2F-O" class="headerlink" title="套接字和标准I&#x2F;O"></a>套接字和标准I&#x2F;O</h3><h4 id="标准I-x2F-O函数"><a href="#标准I-x2F-O函数" class="headerlink" title="标准I&#x2F;O函数"></a>标准I&#x2F;O函数</h4><p>优点：</p>
+<ul>
+<li>标准I&#x2F;O函数具有良好的移植性（Portability )。</li>
+<li>标准I&#x2F;O函数可以利用缓冲提高性能。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>不容易进行双向通信。</li>
+<li>有时可能频繁调用fflush函数。</li>
+<li>需要以FILE结构体指针的形式返回文件描述符。</li>
+</ul>
+<p>缓冲的关系</p>
+<p>设置缓冲的主要目的是为了提高性能，但套接字中的缓冲主要是为了实现TCP协议而设立的。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221028204007100.png"
+                      alt="image-20221028204007100" style="zoom:50%;" 
+                >
+
+
+
+<p>read&#x2F;write -&gt; fgets&#x2F;fputs</p>
+<p>利用fdopen函数转化为FILE结构体指针</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221028205138991.png"
+                      alt="image-20221028205138991"
+                ></p>
+<p>利用fileno函数转换为文件描述符</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221028205346623.png"
+                      alt="image-20221028205346623"
+                ></p>
+<p>标准I&#x2F;O函数为了提高性能，内部提供额外的缓冲。因此，若不调用fflush函数则无法保证立即将数据传输到客户端。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(!<span class="built_in">feof</span>(readfp))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">fgets</span>(message, BUF_SIZE, readfp);</span><br><span class="line">    <span class="built_in">fputs</span>(message, writefp);</span><br><span class="line">    <span class="built_in">fflush</span>(writefp);  <span class="comment">//结束发送过程</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h4 id="I-x2F-O流分离"><a href="#I-x2F-O流分离" class="headerlink" title="I&#x2F;O流分离"></a>I&#x2F;O流分离</h4><p>第一种：通过调用fork函数复制出1个文件描述符，以区分输入和输出中使用的文件描述符。</p>
+<ul>
+<li>通过分开输入过程（代码）和输出过程降低实现难度。</li>
+<li>与输入无关的输出操作可以提高速度。</li>
+</ul>
+<p>第二种：通过2次fdopen函数的调用，创建读模式FILE指针（FILE结构体指针）和写模式FILE指针。</p>
+<ul>
+<li>为了将FILE指针按读模式和写模式加以区分。</li>
+<li>可以通过区分读写模式降低实现难度。</li>
+<li>通过区分I&#x2F;O缓冲提高缓冲性能。</li>
+</ul>
+<p>2个FILE指针、文件描述符及套接字之间的关系：</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221028214642246.png"
+                      alt="image-20221028214642246" style="zoom:50%;" 
+                >
+
+<p>调用fclose函数的结果：</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221028214743084.png"
+                      alt="image-20221028214743084" style="zoom:50%;" 
+                >
+
+
+
+<p>创建FILE指针前先复制文件描述符：</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221028214853713.png"
+                      alt="image-20221028214853713" style="zoom:50%;" 
+                >
+
+
+
+<p>销毁所有文件描述符后才能销毁套接字</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221029004710356.png"
+                      alt="image-20221029004710356" style="zoom:50%;" 
+                >
+
+
+
+<h4 id="复制文件描述符"><a href="#复制文件描述符" class="headerlink" title="复制文件描述符"></a>复制文件描述符</h4><p>为了访问同一文件或套接字，创建另一个文件描述符。</p>
+<h5 id="dup-amp-dup2"><a href="#dup-amp-dup2" class="headerlink" title="dup &amp; dup2"></a>dup &amp; dup2</h5><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221103134924834.png"
+                      alt="image-20221103134924834"
+                ></p>
+<p>dup2函数明确指定复制的文件描述符整数值。向其传递大于0且小于进程能生成的最大文件描述符值时，该值将成为复制出的文件描述符值。</p>
+<h5 id="“流”的分离"><a href="#“流”的分离" class="headerlink" title="“流”的分离"></a>“流”的分离</h5><p>无论复制出多少文件描述符，均应调用shutdown函数发送EOF并进入半关闭状态。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">readfp = <span class="built_in">fdopen</span>(clnt_sock, <span class="string">&quot;r&quot;</span>);</span><br><span class="line">writefp = <span class="built_in">fdopen</span>(<span class="built_in">dup</span>(clnt_sock), <span class="string">&quot;w&quot;</span>);</span><br><span class="line">...</span><br><span class="line"><span class="built_in">shutdown</span>(<span class="built_in">fileno</span>(writefp), SHUT_WR);</span><br><span class="line"><span class="built_in">fclose</span>(writefp);</span><br><span class="line">...</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h3 id="epoll"><a href="#epoll" class="headerlink" title="epoll"></a>epoll</h3><p>select复用方法无论如何优化程序性能也无法同时接入上百个客户端，并不适合以Web服务器端开发为主流的现代开发环境。</p>
+<p>select函数与文件描述符有关，更准确地说，是监视套接字变化的函数。而套接字是由操作系统管理的，所以select函数绝对需要借助于操作系统才能完成功能。</p>
+<p>select函数缺点：</p>
+<ul>
+<li>调用select函数后常见的针对所有文件描述符的循环语句。</li>
+<li>每次调用select函数时都需要向该函数传递监视对象信息。</li>
+</ul>
+<p>只要满足或要求如下两个条件，即使在Linux平台也不应该拘泥于epoll：</p>
+<ul>
+<li>服务器端接入者少。</li>
+<li>程序应具有兼容性。</li>
+</ul>
+<p>epoll函数优点：</p>
+<ul>
+<li>无需编写以监视状态变化为目的的针对所有文件描述符的循环语句。</li>
+<li>调用对应于select函数的epoll_wait函数时无需每次传递监视对象信息。</li>
+</ul>
+<p>epoll服务器端实现中需要的三个函数：</p>
+<ul>
+<li>epoll_create：创建保存epoll文件描述符的空间。</li>
+<li>epoll_ctl：向空间注册并注销文件描述符。</li>
+<li>epoll_wait：与select函数类似，等待文件描述符发生变化。</li>
+</ul>
+<p>epoll方式通过epoll_event将发生变化的（发生事件的）文件描述符单独集中到一起。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">epoll_event</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">__uint32_t</span> events;</span><br><span class="line">    <span class="type">epoll_data_t</span> data;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">typedef</span> <span class="keyword">union</span> <span class="title class_">epoll_data</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">void</span> * ptr;</span><br><span class="line">            <span class="type">int</span> fd;</span><br><span class="line">            <span class="type">__uint32_t</span> u32;</span><br><span class="line">            <span class="type">__uint64_t</span> u64;</span><br><span class="line">        &#125; <span class="type">epoll_data_t</span>;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h5 id="epoll-create"><a href="#epoll-create" class="headerlink" title="epoll_create"></a>epoll_create</h5><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221104004848489.png"
+                      alt="image-20221104004848489"
+                ></p>
+<p>size并非用来决定epoll例程的大小，而仅供操作系统参考。Linux 2.6.8之后的内核将完全忽略传入epoll_create函数的size参数，因为内核会根据情况调整epoll例程的大小。</p>
+<p>需要终止时，与其他文件描述符相同，也要调用close函数。</p>
+<h5 id="epoll-ctl"><a href="#epoll-ctl" class="headerlink" title="epoll_ctl"></a>epoll_ctl</h5><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221104005134653.png"
+                      alt="image-20221104005134653"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221104005151759.png"
+                      alt="image-20221104005151759"
+                ></p>
+<p>epoll例程A中注册文件描述符B，主要目的是监视参数C中的事件：</p>
+<p><code>epoll_ctl(A, EPOLL_CTL_ADD, B, C);</code></p>
+<p>从epoll例程A中删除文件描述符B：</p>
+<p><code>epoll_ctl(A, EPOLL_CTL_DEL, B, NULL);</code></p>
+<p>epoll_ctl第二个参数传递的常量及含义：</p>
+<ul>
+<li>EPOLL_CTL_ADD:将文件描述符注册到epoll例程。</li>
+<li>EPOLL_CTL_DEL:从epoll例程中删除文件描述符。</li>
+<li>EPOLL_CTL_MOD:更改注册的文件描述符的关注事件发生情况。</li>
+</ul>
+<p>第四个参数结构体应用：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">epoll_event</span> event;</span><br><span class="line">....</span><br><span class="line">event.events = EPOLLIN;   <span class="comment">//发生需要读取数据的情况（事件）时</span></span><br><span class="line">event.data.fd = sockfd;</span><br><span class="line"><span class="built_in">epoll_ctl</span>(epfd, EPOLL_CTL_ADD, sockfd, &amp;event);</span><br><span class="line">....</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>events中可以保存的常量及所指的事件类型，通过位或运算同时传递多个上述参数：</p>
+<ul>
+<li>EPOLLIN：需要读取数据的情况。</li>
+<li>EPOLLOUT：输出缓冲为空，可以立即发送数据的情况。</li>
+<li>EPOLLPRI：收到OOB数据的情况。</li>
+<li>EPOLLRDHUP：断开连接或半关闭的情况，这在边缘触发方式下非常有用。</li>
+<li>EPOLLERR：发生错误的情况。</li>
+<li>EPOLLET：以边缘触发的方式得到事件通知。</li>
+<li>EPOLLONESHOT：发生一次事件后，相应文件描述符不再收到事件通知。因此需要向epoll_ctl函数的第二个参数传递EPOLL_CTL_MOD，再次设置事件。</li>
+</ul>
+<h5 id="epoll-wait"><a href="#epoll-wait" class="headerlink" title="epoll_wait"></a>epoll_wait</h5><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221104134316223.png"
+                      alt="image-20221104134316223"
+                ></p>
+<p>调用方式（第二个参数所指缓冲需要动态分配）：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> event_cnt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">epoll_event</span> * ep_events;</span><br><span class="line">...</span><br><span class="line">ep_events = <span class="built_in">malloc</span>(<span class="built_in">sizeof</span>(<span class="keyword">struct</span> epoll_event)*EPOLL_SIZE);  <span class="comment">//EPOLL_SIZE是宏常量</span></span><br><span class="line">...</span><br><span class="line">event_cnt = <span class="built_in">epoll_wait</span>(epfd, ep_events, EPOLL_SIZE, <span class="number">-1</span>);</span><br><span class="line">...</span><br></pre></td></tr></table></figure></div>
+
+
+
+
+
+<h4 id="条件触发和边缘触发"><a href="#条件触发和边缘触发" class="headerlink" title="条件触发和边缘触发"></a>条件触发和边缘触发</h4><ul>
+<li>条件触发方式中，只要输入缓冲中还剩有数据，就将以事件方式再次注册。</li>
+<li>边缘触发方式中，输入缓冲中收到数据时仅注册1次该事件。即使输入缓冲中还留有数据，也不会再进行注册。</li>
+</ul>
+<p>边缘触发服务器端实现必知：</p>
+<ul>
+<li>通过errno变量验证错误原因。</li>
+<li>为了完成非阻塞( Non-blocking ) I&#x2F;O，更改套接字特性。</li>
+</ul>
+<p><code>int errno</code>     为了访问该变量，需要引入error.h头文件。</p>
+<p>将套接字改为非阻塞方式的方法：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221104140821510.png"
+                      alt="image-20221104140821510"
+                ></p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> flag = <span class="built_in">fcntl</span>(fd, F_GETFL, <span class="number">0</span>);   <span class="comment">//获取之前设置的属性信息</span></span><br><span class="line"><span class="built_in">fcntl</span>(fd, F_SETFL, flag|O_NONBLOCK);  <span class="comment">//在此基础上添加非阻塞标志</span></span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>因为边缘触发方式中，接收数据时仅注册1次该事件，因此一旦发生输入相关事件，就应该读取输入缓冲中的全部数据，因此需要验证输入缓冲是否为空。</p>
+<p>read函数返回-1，变量errno中的值为EAGAIN时，说没有数据可读。</p>
+<p>边缘触发方式下，以阻塞方式工作的read&amp;write函数有可能引起服务器端的长时间停顿。因此，边缘触发方式中一定要采用非阻塞read&amp;write函数。</p>
+<p>边缘触发方式可以分离接收数据和处理数据的时间点。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="built_in">setnonblockingmode</span>(clnt_sock);</span><br><span class="line">event.events = EPOLLIN|EPOLLET;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></div>
+
+
+
+
+
+<h3 id="多线程服务器端"><a href="#多线程服务器端" class="headerlink" title="多线程服务器端"></a>多线程服务器端</h3><h4 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h4><p>多进程模型的缺点：</p>
+<ul>
+<li>创建进程的过程会带来一定的开销。</li>
+<li>为了完成进程间数据交换,需要特殊的IPC技术。</li>
+</ul>
+<p>线程相比于进程具有如下优点：</p>
+<ul>
+<li>线程的创建和上下文切换比进程的创建和上下文切换更快。</li>
+<li>线程间交换数据时无需特殊技术。</li>
+</ul>
+<p>每个进程的内存空间都由保存全局变量的“数据区”、向malloc等函数的动态分配提供空间的堆（Heap）、函数运行时使用的栈（Stack）构成。</p>
+<p>只分离栈区域而不完全分离内存结构的优势：</p>
+<ul>
+<li>上下文切换时不需要切换数据区和堆。</li>
+<li>可以利用数据区和堆交换数据。</li>
+</ul>
+<p>进程和线程可以定义为如下形式：</p>
+<ul>
+<li>进程：在操作系统构成单独执行流的单位。</li>
+<li>线程：在进程构成单独执行流的单位。</li>
+</ul>
+<h4 id="线程创建及运行"><a href="#线程创建及运行" class="headerlink" title="线程创建及运行"></a>线程创建及运行</h4><p>线程相关代码在编译时需要添加<code>-lpthread</code>选项声明需要连接线程库，只有这样才能调用头文件pthread.h中声明的函数。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221105155837023.png"
+                      alt="image-20221105155837023"
+                ></p>
+<p>thread1.c程序的执行流程：</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221105160029990.png"
+                      alt="image-20221105160029990" style="zoom: 50%;" 
+                >
+
+
+
+<p>调用该函数的进程（或线程）将进入等待状态，直到第一个参数为ID的线程终止为止。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221105160153688.png"
+                      alt="image-20221105160153688"
+                ></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221105160308077.png"
+                      alt="image-20221105160308077" style="zoom:50%;" 
+                >
+
+
+
+<p>根据临界区是否引起问题，函数可分为以下2类：</p>
+<ul>
+<li>线程安全函数（Thread-safe function）</li>
+<li>非线程安全函数（Thread-unsafe function）</li>
+</ul>
+<p>线程安全函数的名称后缀通常为_r （这与Windows平台不同）。既然如此，多个线程同时访问的代码块中应该调用gethostbyname_r，但这种方法会给程序员带来沉重的负担。幸好可以通过如下方法自动将gethostbyname函数调用改为gethostbyname_r函数调用！</p>
+<p> “声明头文件前定义REENTRANT宏。”</p>
+<p>无需为了上述宏定义特意添加#define语句，可以在编<code>-D_REENTRANT</code>选项定义宏。</p>
+<p><code>rootemy_linux:/tcpip# gcc -D_REENTRANT mythread.c -o mthread -lpthread</code></p>
+<p>下面编译线程相关代码时均默认添加-D_REENTRANT选项。</p>
+<h4 id="线程同步"><a href="#线程同步" class="headerlink" title="线程同步"></a>线程同步</h4><p>需要同步的情况可以从如下两方面考虑：</p>
+<ul>
+<li>同时访问同一内存空间时发生的情况。</li>
+<li>需要指定访问同一内存空间的线程执行顺序的情况。</li>
+</ul>
+<p>为了创建相当于锁系统的互斥量，需要声明如下pthread_mutex_t型变量：</p>
+<p><code>pthread_mutex_t mutex;</code></p>
+<p>互斥量的创建及销毁函数：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221105164046615.png"
+                      alt="image-20221105164046615"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221105164059004.png"
+                      alt="image-20221105164059004"
+                ></p>
+<p>互斥量锁住或释放临界区时使用的函数：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221105164222493.png"
+                      alt="image-20221105164222493"
+                ></p>
+<h4 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h4><p>信号量创建及销毁方法：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221105164350068.png"
+                      alt="image-20221105164350068"
+                ></p>
+<p>信号量中相当于互斥量lock、unlock的函数</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221105164458291.png"
+                      alt="image-20221105164458291"
+                ></p>
+<p>可以通过如下形式同步临界区（假设信号量的初始值为1）</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sem_wait</span>(&amp;sem);  <span class="comment">// 信号量变为0</span></span><br><span class="line"><span class="comment">// 临界区的开始</span></span><br><span class="line"><span class="comment">// .....</span></span><br><span class="line"><span class="comment">// 临界区的结束</span></span><br><span class="line"><span class="built_in">sem_post</span>(&amp;sem);  <span class="comment">// 信号量变为1</span></span><br></pre></td></tr></table></figure></div>
+
+
+
+<h4 id="线程的销毁"><a href="#线程的销毁" class="headerlink" title="线程的销毁"></a>线程的销毁</h4><p>Linux线程并不是在首次调用的线程main函数返回时自动销毁，所以用如下2种方法之一加以明确。否则由线程创建的内存空间将一直存在。</p>
+<ul>
+<li>调用pthread_join函数。</li>
+<li>调用pthread_detach函数。</li>
+</ul>
+<p>之前调用过pthread_join函数。调用该函数时，不仅会等待线程终止，还会引导线程销毁。但该函数的问题是，线程终止前，调用该函数的线程将进入阻塞状态。因此，通常通过如下函数调用引导线程销毁。</p>
+<p>调用该函数不会引起线程终止或进入阻塞状态，可以通过该函数引导销毁线程创建的内存空间。</p>
+<p>调用该函数后不能再针对相应线程调用pthread_join函数，这需要格外注意。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/image-20221105164855954.png"
+                      alt="image-20221105164855954"
+                ></p>
+<h4 id="多线程并发服务器端的实现"><a href="#多线程并发服务器端的实现" class="headerlink" title="多线程并发服务器端的实现"></a>多线程并发服务器端的实现</h4><p>P307</p>
+
+            </div>
+
+            
+
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2022/11/07/2022-11-07-%E8%BF%91%E6%9C%9F%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%922/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">近期学习计划2</span>
+                                    <span class="post-nav-item">Prev posts</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2022/09/07/2022-09-07-%E8%BF%91%E6%9C%9F%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%921/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">近期学习计划1</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">TCP/IP网络编程</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A5%97%E6%8E%A5%E5%AD%97"><span class="nav-text">套接字</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8F%E8%AE%AE%E6%97%8F"><span class="nav-text">协议族</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A5%97%E6%8E%A5%E5%AD%97%E7%B1%BB%E5%9E%8B"><span class="nav-text">套接字类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%B0%E5%9D%80"><span class="nav-text">地址</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%AD%97%E8%8A%82%E5%BA%8F"><span class="nav-text">网络字节序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8ETCP"><span class="nav-text">基于TCP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8ETCP%E7%9A%84%E5%8D%8A%E5%85%B3%E9%97%AD"><span class="nav-text">基于TCP的半关闭</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%9F%E5%90%8D%E5%92%8CIP"><span class="nav-text">域名和IP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A5%97%E6%8E%A5%E5%AD%97-1"><span class="nav-text">套接字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E8%BF%9B%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF"><span class="nav-text">多进程服务器端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1"><span class="nav-text">进程间通信</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I-x2F-O%E5%A4%8D%E7%94%A8"><span class="nav-text">I&#x2F;O复用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E7%A7%8DIO%E5%87%BD%E6%95%B0"><span class="nav-text">多种IO函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E6%92%AD%E4%B8%8E%E5%B9%BF%E6%92%AD"><span class="nav-text">多播与广播</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A5%97%E6%8E%A5%E5%AD%97%E5%92%8C%E6%A0%87%E5%87%86I-x2F-O"><span class="nav-text">套接字和标准I&#x2F;O</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#epoll"><span class="nav-text">epoll</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF"><span class="nav-text">多线程服务器端</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">staaar</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br>
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.1.0</a>
+        </div>
+        
+        
+        
+        
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>
