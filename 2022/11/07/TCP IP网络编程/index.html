@@ -57,7 +57,7 @@
 <meta property="og:image" content="http://example.com/img/image-20221019131619158.png">
 <meta property="og:image" content="http://example.com/img/image-20221021224505975.png">
 <meta property="og:image" content="http://example.com/img/image-20221024132928621.png">
-<meta property="og:image" content="c:/Users/41994/AppData/Roaming/Typora/typora-user-images/image-20221024132941804.png">
+<meta property="og:image" content="http://example.com/img/image-20221024132941804.png">
 <meta property="og:image" content="http://example.com/img/image-20221024133317387.png">
 <meta property="og:image" content="http://example.com/img/image-20221028204007100.png">
 <meta property="og:image" content="http://example.com/img/image-20221028205138991.png">
@@ -83,7 +83,7 @@
 <meta property="og:image" content="http://example.com/img/image-20221105164458291.png">
 <meta property="og:image" content="http://example.com/img/image-20221105164855954.png">
 <meta property="article:published_time" content="2022-11-06T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-04-03T13:56:20.144Z">
+<meta property="article:modified_time" content="2023-04-20T13:30:45.686Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/img/image-20220908153953994.png">
@@ -310,8 +310,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-04-03 21:56:20</span>
-            <span class="mobile">2023-04-03 21:56</span>
+            <span class="desktop">2023-04-20 21:30:45</span>
+            <span class="mobile">2023-04-20 21:30</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -492,13 +492,12 @@
 
 
 <h2 id="基于TCP"><a href="#基于TCP" class="headerlink" title="基于TCP"></a>基于TCP</h2><p>TCP服务器端函数调用顺序</p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/img/image-20220911210332798.png"
-                      alt="image-20220911210332798" style="zoom:50%;" 
-                >
-
+                      alt="img"
+                ></p>
 <h5 id="进入等待连接请求状态"><a href="#进入等待连接请求状态" class="headerlink" title="进入等待连接请求状态"></a>进入等待连接请求状态</h5><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">listen</span><span class="params">(<span class="type">int</span> sock, <span class="type">int</span> backlog)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//成功时返回0, 失败时返回-1</span></span><br><span class="line"><span class="comment">//sock 希望进入等待连接请求状态的套接字文件描述符</span></span><br><span class="line"><span class="comment">//backlog 连接请求等待队列的长度, 若为5, 则队列长度为5, 表示最多使5个连接请求进入队列</span></span><br></pre></td></tr></table></figure></div>
 
 <h5 id="受理客户端连接请求"><a href="#受理客户端连接请求" class="headerlink" title="受理客户端连接请求"></a>受理客户端连接请求</h5><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">accept</span><span class="params">(<span class="type">int</span> sock, <span class="keyword">struct</span> sockaddr * addr, <span class="type">socklen_t</span> * addrlen)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//成功时返回创建的套接字文件描述符, 失败时返回-1</span></span><br><span class="line"><span class="comment">//sock 服务器套接字的文件描述符</span></span><br><span class="line"><span class="comment">//addr 保存发起连接请求的客户端地址信息的变量地址值, 调用函数后向传递来的地址变量参数填充客户端地址信息</span></span><br><span class="line"><span class="comment">//addrlen 第二个参数addr结构体的长度, 但是存有长度的变量地址. 函数调用完成后, 该变量即被填入客户端地址长度</span></span><br></pre></td></tr></table></figure></div>
@@ -506,29 +505,23 @@
 
 
 <p>TCP客户端的默认函数调用顺序</p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/img/image-20220911214033212.png"
-                      alt="image-20220911214033212" style="zoom:50%;" 
-                >
-
-
-
+                      alt="img"
+                ></p>
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">connect</span><span class="params">(<span class="type">int</span> sock, <span class="keyword">struct</span> sockaddr * servaddr, <span class="type">socklen_t</span> addrlen)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//成功时返回0, 失败时返回-1</span></span><br><span class="line"><span class="comment">//sock 客户端套接字文件描述符</span></span><br><span class="line"><span class="comment">//servaddr 保存目标服务器端地址信息的变量地址值</span></span><br><span class="line"><span class="comment">//addrlen 以字节为单位传递已传递给第二个结构体参数servaddr的地址变量长度</span></span><br></pre></td></tr></table></figure></div>
 
 
 
 <p>函数调用关系</p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/img/image-20220911214412817.png"
-                      alt="image-20220911214412817" style="zoom:50%;" 
-                >
-
-
-
+                      alt="img"
+                ></p>
 <p>基于UDP的数据I&#x2F;O函数</p>
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">ssize_t</span> <span class="title">sendto</span><span class="params">(<span class="type">int</span> sock, <span class="type">void</span> *buff, <span class="type">size_t</span> nbytes, <span class="type">int</span> flags, </span></span></span><br><span class="line"><span class="params"><span class="function">              <span class="keyword">struct</span> sockaddr *to, <span class="type">socklen_t</span> addrlen)</span></span>;</span><br><span class="line"><span class="comment">//成功时返回传输的字节数, 失败时返回-1</span></span><br><span class="line"><span class="comment">//sock     用于传输数据的UDP套接字文件描述符</span></span><br><span class="line"><span class="comment">//buff     保存待传输数据的缓冲地址值</span></span><br><span class="line"><span class="comment">//nbytes   待传输的数据长度, 以字节为单位</span></span><br><span class="line"><span class="comment">//flags    可选项参数, 若没有则传递0</span></span><br><span class="line"><span class="comment">//to       存有目标地址信息的sockaddr结构体变量的地址值</span></span><br><span class="line"><span class="comment">//addrlen  传递给参数to的地址值结构体变量长度</span></span><br></pre></td></tr></table></figure></div>
 
@@ -595,15 +588,12 @@
                      data-src="/img/image-20221008232550859.png"
                       alt="image-20221008232550859"
                 ></p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/img/image-20221008232633448.png"
-                      alt="image-20221008232633448" style="zoom: 50%;" 
-                >
-
-
-
+                      alt="img"
+                ></p>
 <h4 id="利用IP地址获取域名"><a href="#利用IP地址获取域名" class="headerlink" title="利用IP地址获取域名"></a>利用IP地址获取域名</h4><p><img  
                      lazyload
                      src="/images/loading.svg"
@@ -723,37 +713,30 @@
                       alt="image-20221013002934473"
                 ></p>
 <h3 id="I-x2F-O复用"><a href="#I-x2F-O复用" class="headerlink" title="I&#x2F;O复用"></a>I&#x2F;O复用</h3><p>为了构建并发服务器，只要有客户端连接请求就会创建新进程，但创建进程时需要付出极大代价，需要大量的运算和内存空间，由于每个进程都具有独立的内存空间，所以互相间的数据交换也要求采用相对复杂的方法（IPC属于相对复杂的通信方法）。</p>
-<h4 id="select函数调用过程"><a href="#select函数调用过程" class="headerlink" title="select函数调用过程"></a>select函数调用过程</h4><img  
+<h4 id="select函数调用过程"><a href="#select函数调用过程" class="headerlink" title="select函数调用过程"></a>select函数调用过程</h4><p><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/img/image-20221013003156901.png"
-                      alt="image-20221013003156901" style="zoom: 67%;" 
-                >
-
+                      alt="img"
+                ></p>
 <p>如果该位设置为1，则表示该文件描述符是监视对象。</p>
 <p>下图中1、3文件描述符是监视对象。</p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/img/image-20221013003333559.png"
-                      alt="image-20221013003333559" style="zoom: 50%;" 
-                >
-
+                      alt="img"
+                ></p>
 <p>FD ZERO(fd set * fdset)：将fd_set变量的所有位初始化为0。</p>
 <p>FD SET(int fd, fd_set * fdset)：在参数fdset指向的变量中注册文件描述符fd的信息。</p>
 <p>FD_CLR(int fd, fd_set * fdset)：从参数fdset指向的变量中清除文件描述符fd的信息。</p>
 <p>FD_ISSET(int fd, fd_set * fdset)：若参数fdset指向的变量中包含文件描述符fd的信息，则返回“真”。</p>
-<h5 id="fd-set相关函数的功能"><a href="#fd-set相关函数的功能" class="headerlink" title="fd_set相关函数的功能"></a>fd_set相关函数的功能</h5><img  
+<h5 id="fd-set相关函数的功能"><a href="#fd-set相关函数的功能" class="headerlink" title="fd_set相关函数的功能"></a>fd_set相关函数的功能</h5><p><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/img/image-20221013003508366.png"
-                      alt="image-20221013003508366" style="zoom:67%;" 
-                >
-
-
-
-
-
+                      alt="img"
+                ></p>
 <h4 id="select函数"><a href="#select函数" class="headerlink" title="select函数"></a>select函数</h4><p><img  
                      lazyload
                      src="/images/loading.svg"
@@ -851,7 +834,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\41994\AppData\Roaming\Typora\typora-user-images\image-20221024132941804.png"
+                     data-src="/img/image-20221024132941804.png"
                       alt="image-20221024132941804"
                 ></p>
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">iovec</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">void</span> * iov_base;  <span class="comment">// 缓冲地址</span></span><br><span class="line">    <span class="type">size_t</span> iov_len;   <span class="comment">// 缓冲大小</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
@@ -916,15 +899,12 @@
 </ul>
 <p>缓冲的关系</p>
 <p>设置缓冲的主要目的是为了提高性能，但套接字中的缓冲主要是为了实现TCP协议而设立的。</p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/img/image-20221028204007100.png"
-                      alt="image-20221028204007100" style="zoom:50%;" 
-                >
-
-
-
+                      alt="img"
+                ></p>
 <p>read&#x2F;write -&gt; fgets&#x2F;fputs</p>
 <p>利用fdopen函数转化为FILE结构体指针</p>
 <p><img  
@@ -957,43 +937,33 @@
 <li>通过区分I&#x2F;O缓冲提高缓冲性能。</li>
 </ul>
 <p>2个FILE指针、文件描述符及套接字之间的关系：</p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/img/image-20221028214642246.png"
-                      alt="image-20221028214642246" style="zoom:50%;" 
-                >
-
+                      alt="img"
+                ></p>
 <p>调用fclose函数的结果：</p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/img/image-20221028214743084.png"
-                      alt="image-20221028214743084" style="zoom:50%;" 
-                >
-
-
-
+                      alt="img"
+                ></p>
 <p>创建FILE指针前先复制文件描述符：</p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/img/image-20221028214853713.png"
-                      alt="image-20221028214853713" style="zoom:50%;" 
-                >
-
-
-
+                      alt="img"
+                ></p>
 <p>销毁所有文件描述符后才能销毁套接字</p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/img/image-20221029004710356.png"
-                      alt="image-20221029004710356" style="zoom:50%;" 
-                >
-
-
-
+                      alt="img"
+                ></p>
 <h4 id="复制文件描述符"><a href="#复制文件描述符" class="headerlink" title="复制文件描述符"></a>复制文件描述符</h4><p>为了访问同一文件或套接字，创建另一个文件描述符。</p>
 <h5 id="dup-amp-dup2"><a href="#dup-amp-dup2" class="headerlink" title="dup &amp; dup2"></a>dup &amp; dup2</h5><p><img  
                      lazyload
@@ -1153,15 +1123,12 @@
                       alt="image-20221105155837023"
                 ></p>
 <p>thread1.c程序的执行流程：</p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/img/image-20221105160029990.png"
-                      alt="image-20221105160029990" style="zoom: 50%;" 
-                >
-
-
-
+                      alt="img"
+                ></p>
 <p>调用该函数的进程（或线程）将进入等待状态，直到第一个参数为ID的线程终止为止。</p>
 <p><img  
                      lazyload
@@ -1169,15 +1136,12 @@
                      data-src="/img/image-20221105160153688.png"
                       alt="image-20221105160153688"
                 ></p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/img/image-20221105160308077.png"
-                      alt="image-20221105160308077" style="zoom:50%;" 
-                >
-
-
-
+                      alt="img"
+                ></p>
 <p>根据临界区是否引起问题，函数可分为以下2类：</p>
 <ul>
 <li>线程安全函数（Thread-safe function）</li>
