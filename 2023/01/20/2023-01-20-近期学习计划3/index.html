@@ -4,13 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="Hexo Theme Redefine">
-    <meta name="description" content="Hexo Theme Redefine">
+    
     <meta name="author" content="staaar">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-redefine.png">
     <!-- preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://evan.beee.top" crossorigin>
+    
     
     <!--- Seo Part-->
     
@@ -31,6 +30,7 @@
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
     
+    
     <!--- Icon Part-->
     <link rel="icon" type="image/png" href="/images/star.svg" sizes="192x192">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/star.svg">
@@ -48,7 +48,13 @@
 <link rel="stylesheet" href="/css/style.css">
 
     
-<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
 
     <!--- Font Part-->
     
@@ -61,8 +67,9 @@
     <script id="hexo-configurations">
     let Global = window.Global || {};
     Global.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN"};
-    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center"},"word_count":{"enable":false,"count":false,"min2read":false},"author_label":{"enable":false,"auto":false,"list":[""]},"code_block":{"copy":true,"style":"simple","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":false,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"busuanzi_counter":{"enable":false,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true},"home_banner":{"enable":true,"image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"一条咸鱼罢了","subtitle":{"text":[],"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"audios":[{"name":null,"artist":null,"url":null,"cover":null},{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.1.0","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Categories":{"icon":"fa-solid fa-folder","path":"/categories/"},"Archives":{"icon":"fa-regular fa-archive","path":"/archives/"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","announcement":null,"links":{"Categories":{"path":"/categories","icon":"fa-regular fa-folder"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":false,"count":false,"min2read":false},"author_label":{"enable":false,"auto":false,"list":[""]},"code_block":{"copy":true,"style":"simple","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":false,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"open_graph":true,"google_analytics":{"enable":false,"id":null},"busuanzi_counter":{"enable":false,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"一条咸鱼罢了","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":null,"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null},{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.3.0","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Links":{"icon":"fa-regular fa-link","submenus":{"itch":"https://staaarw.itch.io/"}},"Categories":{"icon":"fa-solid fa-folder","path":"/categories/"},"Archives":{"icon":"fa-regular fa-archive","path":"/archives/"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":{"Categories":{"path":"/categories","icon":"fa-regular fa-folder"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
     Global.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    Global.data_config = {"masonry":false};
   </script>
     
     <!--- Fontawesome Part-->
@@ -91,18 +98,20 @@
 
     
         <span class="pjax-progress-bar"></span>
-        <span class="pjax-progress-icon">
+        <span class="swup-progress-icon">
             <i class="fa-solid fa-circle-notch fa-spin"></i>
         </span>
     
 </div>
 
 
-<main class="page-container">
+<main class="page-container" id="swup">
+    
 
     
 
     <div class="main-content-container">
+        
 
         <div class="main-content-header">
             <header class="navbar-container">
@@ -135,6 +144,31 @@
                                     
                                 </a>
                                 <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-regular fa-link"></i>
+                                        
+                                        链接&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://staaarw.itch.io/">ITCH
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
                                 
                             </li>
                     
@@ -204,6 +238,27 @@
             
                 
                     <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-regular fa-link"></i>
+                                
+                                链接&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" target="_blank" rel="noopener" href="https://staaarw.itch.io/">ITCH</a>
+                            </li>
+                        
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
                         <a class="" 
                         href="/categories/"  >
                              
@@ -250,42 +305,40 @@
             <div class="main-content">
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="post-page-container">
-        <div class="article-content-container">
+                    <div class="post-page-container">
+    <div class="article-content-container">
 
+        <div class="article-title">
             
+                <h1 class="article-title-regular">近期学习计划3</h1>
             
-                <div class="article-title">
-                    <h1 class="article-title-regular">近期学习计划3</h1>
+            </div>
+            
+                    
+        
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/cat.jpg">
                 </div>
-            
-                
-            
-
-            
-                <div class="article-header">
-                    <div class="avatar">
-                        <img src="/images/cat.jpg">
+                <div class="info">
+                    <div class="author">
+                        <span class="name">staaar</span>
+                        
                     </div>
-                    <div class="info">
-                        <div class="author">
-                            <span class="name">staaar</span>
-                            
-                        </div>
-                        <div class="meta-info">
-                            <div class="article-meta-info">
+                    <div class="meta-info">
+                        <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
         <span class="desktop">2023-01-20 02:20:53</span>
-        <span class="mobile">2023-01-20 02:20</span>
+        <span class="mobile">2023-01-20 02:20:53</span>
         <span class="hover-info">创建</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
             <span class="desktop">2023-02-28 22:36:13</span>
-            <span class="mobile">2023-02-28 22:36</span>
+            <span class="mobile">2023-02-28 22:36:13</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -295,9 +348,14 @@
             <i class="fa-regular fa-folders"></i>&nbsp;
             <ul>
                 
-                    <li>
-                        <a href="/categories/%E8%BF%91%E6%9C%9F%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/">近期学习计划</a>&nbsp;
-                    </li>
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E8%BF%91%E6%9C%9F%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/">近期学习计划</a>&nbsp;
+                        </li>
+                    
+                    
                 
             </ul>
         </span>
@@ -308,15 +366,19 @@
     
     
     
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
 </div>
 
-                        </div>
                     </div>
                 </div>
-            
+            </div>
+        
 
-            <div class="article-content markdown-body">
-                <p>凌晨两点, 正在焦虑…</p>
+        <div class="article-content markdown-body">
+            <p>凌晨两点, 正在焦虑…</p>
 <br/>
 
 <p>从上次写完计划2, 两三天看完《现代c++》, 然后就进入了考试复习和一大堆乱七八糟的事情和意外之中, 一直摸到了被遣返回家orz, 总之学习效率极其低下, 假期在家也是( 悲 )… 还好之前还有计划, 可以拾起来重新安排一下.</p>
@@ -353,58 +415,58 @@
 
 <p>开学还有四门考试… 机器学习还是闭卷, 啊… 倒下…</p>
 
-            </div>
-
-            
-
-            
-
-            
-
-            
-                <div class="article-nav">
-                    
-                        <div class="article-prev">
-                            <a class="prev"
-                            rel="prev"
-                            href="/2023/02/28/makefile/"
-                            >
-                                <span class="left arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-left"></i>
-                                </span>
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">Makefile</span>
-                                    <span class="post-nav-item">上一篇</span>
-                                </span>
-                            </a>
-                        </div>
-                    
-                    
-                        <div class="article-next">
-                            <a class="next"
-                            rel="next"
-                            href="/2022/11/15/IO%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
-                            >
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">Reactor和Proactor</span>
-                                    <span class="post-nav-item">下一篇</span>
-                                </span>
-                                <span class="right arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-right"></i>
-                                </span>
-                            </a>
-                        </div>
-                    
-                </div>
-            
-
-
-            
         </div>
 
         
-            <div class="toc-content-container">
-                <div class="post-toc-wrap">
+
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2023/02/28/makefile/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Makefile</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                        rel="next"
+                        href="/2022/11/15/IO%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Reactor和Proactor</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">此页目录</div>
         <div class="page-title">近期学习计划3</div>
@@ -412,10 +474,10 @@
 
     </div>
 </div>
-            </div>
-        
-    </div>
+        </div>
+    
 </div>
+
 
 
                 
@@ -438,12 +500,25 @@
             2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">staaar</a>
         </div>
         
+            <script data-swup-reload-script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
         <div class="theme-info info-item">
             <span class="powered-by-container">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a> 驱动</span>
                 <br>
-            <span class="theme-version-container">主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.1.0</a>
+            <span class="theme-version-container">主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.3.0</a></span>
         </div>
-        
         
         
         
@@ -513,6 +588,7 @@
                 <span class="percent"></span>
             </li>
         
+        
     </ul>
 </div>
 
@@ -529,6 +605,46 @@
 </main>
 
 
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+        ],
+        containers: ["#swup"],
+    });
+
+    swup.on("pageView", () => {
+        Global.refresh();
+    });
+
+    // if (document.readyState === "complete") {
+    //
+    // } else {
+    //     document.addEventListener("DOMContentLoaded", () => init());
+    // }
+</script>
+
+
+
 
 
 <script src="/js/utils.js"></script>
@@ -540,6 +656,8 @@
 <script src="/js/tools/scrollTopBottom.js"></script>
 
 <script src="/js/tools/lightDarkSwitch.js"></script>
+
+<script src="/js/layouts/categoryList.js"></script>
 
 
 
@@ -571,55 +689,19 @@
 
 
 
-<div class="post-scripts pjax">
+<div class="post-scripts" data-swup-reload-script>
     
         
 <script src="/js/tools/tocToggle.js"></script>
 
-<script src="/js/libs/anime.min.js"></script>
-
 <script src="/js/layouts/toc.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
 
 <script src="/js/plugins/tabs.js"></script>
 
     
 </div>
-
-
-    
-<script src="/js/libs/pjax.min.js"></script>
-
-<script>
-    window.addEventListener('DOMContentLoaded', () => {
-        window.pjax = new Pjax({
-            selectors: [
-                'head title',
-                '.page-container',
-                '.pjax'
-            ],
-            history: true,
-            debug: false,
-            cacheBust: false,
-            timeout: 0,
-            analytics: false,
-            currentUrlFullReload: false,
-            scrollRestoration: false,
-            // scrollTo: true,
-        });
-
-        document.addEventListener('pjax:send', () => {
-            Global.utils.pjaxProgressBarStart();
-        });
-
-        document.addEventListener('pjax:complete', () => {
-            Global.utils.pjaxProgressBarEnd();
-            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
-            Global.refresh();
-        });
-    });
-</script>
-
-
 
 
 </body>
